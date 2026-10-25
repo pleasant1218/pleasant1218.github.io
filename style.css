@@ -14,3 +14,5 @@ body{font-family:Arial,Helvetica,sans-serif}header{gap:22px}nav{gap:22px;font-si
 
 
 #portrait{cursor:pointer}#portrait:has(.portrait-link:focus-visible){outline:2px dashed #315f90;outline-offset:6px}
+
+.dog-world .dog-actor{pointer-events:auto;cursor:pointer;color:inherit;text-decoration:none}.dog-actor:focus-visible{outline:2px dashed #315f90;outline-offset:3px}.qq-home-cue{position:absolute;pointer-events:auto;color:#315b84;font:13px/1.5 Arial,sans-serif;white-space:nowrap;z-index:5}.qq-home-cue svg{display:block;width:90px;height:49px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}.qq-home-cue:hover{text-decoration:underline}@media(max-width:700px){.qq-home-cue{font-size:11px}.qq-home-cue svg{width:70px;height:38px}}

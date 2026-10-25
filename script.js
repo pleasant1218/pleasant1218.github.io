@@ -22,6 +22,7 @@ function tick(){if(!enabled||document.hidden){setTimeout(tick,1000);return;}cons
     const x=b.left-h.left+b.width/2-dog.offsetWidth/2;
     const y=b.top-h.top+b.height*.58-dog.offsetHeight*.96;
     dog.style.transform=`translate(${x}px,${y}px)`;
+    const cue=document.getElementById("qq-home-cue");if(cue){cue.style.left=`${Math.max(12,x-10)}px`;cue.style.top=`${y-65}px`;}
   }
   const resize=new ResizeObserver(placeDog);resize.observe(hero);resize.observe(bed);placeDog();
 })();
@@ -40,3 +41,4 @@ card.addEventListener('click',event=>{
 });
 window.addEventListener('pageshow',()=>{opening=false;document.querySelectorAll('.page-zoom-overlay').forEach(el=>el.remove());});
 })();
+
