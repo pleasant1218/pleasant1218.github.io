@@ -1,9 +1,10 @@
 (() => {
 'use strict';
 const head=document.getElementById('head'),portrait=document.getElementById('portrait'),pupils=[...document.querySelectorAll('.pupil')],button=document.getElementById('motion'),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+head.style.transformOrigin="550px 430px";
 let enabled=!reduced.matches,tx=0,ty=0,x=0,y=0,frame=0;
 const clamp=v=>Math.max(-1,Math.min(1,v));
-function render(){x+=(tx-x)*.09;y+=(ty-y)*.09;head.style.transform=`translate(${x*9}px,${y*5}px) rotate(${x*4}deg) skewY(${y*.7}deg)`;pupils.forEach(p=>p.style.transform=`translate(${x*8}px,${y*5}px)`);frame=Math.abs(x-tx)+Math.abs(y-ty)>.002?requestAnimationFrame(render):0;}
+function render(){x+=(tx-x)*.09;y+=(ty-y)*.09;head.style.transform=`translate(${x*2}px,0px) rotate(${x*1.8+y*.25}deg)`;pupils.forEach(p=>p.style.transform=`translate(${x*8}px,${y*5}px)`);frame=Math.abs(x-tx)+Math.abs(y-ty)>.002?requestAnimationFrame(render):0;}
 function aim(a,b){tx=a;ty=b;if(!frame)frame=requestAnimationFrame(render);}
 window.addEventListener('pointermove',e=>{if(!enabled||e.pointerType==='touch')return;const r=portrait.getBoundingClientRect();aim(clamp((e.clientX-r.left-r.width*.53)/Math.max(innerWidth*.35,240)),clamp((e.clientY-r.top-r.height*.17)/Math.max(innerHeight*.4,200)));},{passive:true});
 document.documentElement.addEventListener('pointerleave',()=>aim(0,0));window.addEventListener('blur',()=>aim(0,0));
