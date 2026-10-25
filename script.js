@@ -22,7 +22,7 @@ function tick(){if(!enabled||document.hidden){setTimeout(tick,1000);return;}cons
     const x=b.left-h.left+b.width/2-dog.offsetWidth/2;
     const y=b.top-h.top+b.height*.58-dog.offsetHeight*.96;
     dog.style.transform=`translate(${x}px,${y}px)`;
-    const cue=document.getElementById("qq-home-cue");if(cue){cue.style.left=`${Math.max(12,x-10)}px`;cue.style.top=`${y-65}px`;}
+    const cue=document.getElementById("qq-home-cue");if(cue){cue.style.left=`${Math.max(12,x+dog.offsetWidth-8)}px`;cue.style.top=`${y-5}px`;}
   }
   const resize=new ResizeObserver(placeDog);resize.observe(hero);resize.observe(bed);placeDog();
 })();
@@ -42,3 +42,5 @@ card.addEventListener('click',event=>{
 window.addEventListener('pageshow',()=>{opening=false;document.querySelectorAll('.page-zoom-overlay').forEach(el=>el.remove());});
 })();
 
+
+(()=>{const star=document.getElementById('discovery-star'),note=document.getElementById('discovery-note');if(!star||!note)return;const facts=['Currently trying: crystal wire wrapping.','High jump has been part of my life since primary school.','At the gym: hip thrusts, shoulder presses & Bulgarian split squats.','This little website is one of my experiments with Codex.','QQ would only give her paw to me.','Summer plans: a little fishing and a dip in the sea.','Once, trying something new meant bungee jumping.'];let last=-1;star.addEventListener('click',()=>{let next;do{next=Math.floor(Math.random()*facts.length);}while(next===last);last=next;note.textContent=facts[next];});})();
