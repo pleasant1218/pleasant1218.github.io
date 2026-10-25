@@ -9,3 +9,5 @@
 
 /* Make the professional profile easy to scan and keep contact actions consistent. */
 .career-note .cv-profile,.career-note .cv-direction{font-size:18px;line-height:1.85;color:#3e5e7e;max-width:1050px;margin:22px 0}.career-note .cv-direction{color:#264e77}.career-note .cv-direction strong{font-weight:600}.career-note .cv-links{align-items:baseline;gap:14px 32px;margin-top:26px}.career-note .cv-links a{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:400;line-height:1.5;margin:0;padding:8px 0;color:#34659a}.career-note .cv-links a:first-child{font-weight:400}@media(max-width:700px){.career-note .cv-profile,.career-note .cv-direction{font-size:16px;line-height:1.8}.career-note .cv-links{gap:12px 23px}.career-note .cv-links a{font-size:14px}}
+
+.career-note .cv-links a,.career-note .cv-links a:first-child{font-weight:700}
