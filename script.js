@@ -11,7 +11,8 @@ document.documentElement.addEventListener('pointerleave',()=>aim(0,0));window.ad
 function sync(){button.setAttribute('aria-pressed',String(enabled));button.textContent=enabled?'Motion ON':'Motion OFF';button.setAttribute('aria-label',enabled?'Turn character motion off':'Turn character motion on');document.body.classList.toggle('still',!enabled);if(!enabled)aim(0,0);}
 button.addEventListener('click',()=>{enabled=!enabled;sync();});reduced.addEventListener('change',()=>{enabled=!reduced.matches;sync();});sync();
 const text=document.getElementById('typewriter'),phrases=['Collecting little discoveries…','A little work, a little wonder.','Always room for a little curiosity!'];let phrase=0,pos=phrases[0].length,deleting=true;
-function tick(){if(!enabled||document.hidden){setTimeout(tick,1000);return;}const sentence=phrases[phrase];pos+=deleting?-1:1;text.textContent=sentence.slice(0,pos);let delay=deleting?65:140;if(pos===0){deleting=false;phrase=(phrase+1)%phrases.length;delay=350;}else if(pos===sentence.length&&!deleting){deleting=true;delay=2500;}setTimeout(tick,delay);}setTimeout(tick,3000);
+let typingLanguage='en';
+function tick(){const activeLanguage=window.siteI18n?.language||'en';if(typingLanguage!==activeLanguage){typingLanguage=activeLanguage;pos=0;deleting=false;}if(!enabled||document.hidden){setTimeout(tick,1000);return;}const sentence=window.siteI18n?window.siteI18n.t(phrases[phrase]):phrases[phrase];pos+=deleting?-1:1;text.textContent=sentence.slice(0,pos);let delay=deleting?65:140;if(pos===0){deleting=false;phrase=(phrase+1)%phrases.length;delay=350;}else if(pos===sentence.length&&!deleting){deleting=true;delay=2500;}setTimeout(tick,delay);}setTimeout(tick,3000);
 })();
 
 (() => {
