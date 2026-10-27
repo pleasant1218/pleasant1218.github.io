@@ -7,8 +7,9 @@ const SITE_ZH={"About Me · Chenshuo Yang":"关于我 · 杨辰硕","science, li
   const originals=new WeakMap(),attributes=new WeakMap();
   let select,observer;
   const normalize=s=>s.trim().replace(/\s+/g,' ');
+  const reverse=Object.fromEntries(Object.entries(SITE_ZH).map(([en,zh])=>[zh,en]));
   function translate(value){
-    if(language!=='zh')return value;
+    if(language!=='zh'){const key=normalize(value);const match=key.match(/^(\d+ \/ \d+ · )(.+)$/);const translated=reverse[key]||(match?match[1]+(reverse[match[2]]||match[2]):undefined);return translated===undefined?value:value.match(/^\s*/)[0]+translated+value.match(/\s*$/)[0];}
     const key=normalize(value);
     let replacement=SITE_ZH[key];
     if(replacement===undefined){
@@ -26,7 +27,7 @@ const SITE_ZH={"About Me · Chenshuo Yang":"关于我 · 杨辰硕","science, li
     if(replacement===undefined)return value;
     return value.match(/^\s*/)[0]+replacement+value.match(/\s*$/)[0];
   }
-  function excluded(element){return !element||!!element.closest('script,style,[data-no-translate],.language-controls');}
+  function excluded(element){return !element||!!element.closest('script,style,[data-no-translate],.language-picker');}
   function textNode(node){
     if(excluded(node.parentElement)||!node.nodeValue.trim())return;
     let saved=originals.get(node);
